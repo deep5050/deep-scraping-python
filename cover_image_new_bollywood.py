@@ -1,4 +1,5 @@
-
+# download latest bollywood movie's cover image automatically (webmusic.cc) 
+# it also creats new folders for each movie
 
 # github/deep5050
 
