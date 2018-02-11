@@ -82,7 +82,4 @@ for row in result:
   download_file(img_url, img_name)
 
 print("DOWNLOAD COMPLETE ")
-
-#open the folder in explorer
-subprocess.Popen('explorer new_path')
   
