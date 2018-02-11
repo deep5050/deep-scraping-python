@@ -9,6 +9,7 @@ from urllib.request import urlopen
 import os
 import requests
 import progressbar
+import subprocess
 
 
 def get_cover_image_url(url):
@@ -50,11 +51,13 @@ bs_obj = soup(response.read(), "html.parser")
 data = str(bs_obj)
 response.close
 
-#create a new folder on desktop
-new_path = r"C:\Users\dipankar\Desktop\latest-bollywoods"
+#get the current directory and then create a new folder names 'latest-bollywood'
+new_path = os.path.dirname(os.path.realpath(__file__))+'\latest-bollywood'
 
 if not os.path.exists(new_path):
   os.makedirs(new_path)
+
+subprocess.Popen('explorer ".\latest-bollywood"')
 
 result = re.findall(expr, data)
 #print(len(result)," results found :---->")
@@ -62,12 +65,12 @@ result = re.findall(expr, data)
 print("TOTAL",len(result)," files to download")
 file_count = 1
 for row in result:
-  # print("movie name:",row[1])
-  # print("url :",row[0],"\n\n")
-  # create a new folder for each movie name under the parent dir
+  # row[0] is url and row[1] is the movie name
+  # create a new folder for each movie name under the 'latest-bollyeood'
   temp_dir = new_path + '\\' + row[1]
   #print(temp_dir)
 
+# create a folder if not exists
   if not os.path.exists(temp_dir):
     os.makedirs(temp_dir)
 
@@ -80,4 +83,6 @@ for row in result:
 
 print("DOWNLOAD COMPLETE ")
 
+#open the folder in explorer
+subprocess.Popen('explorer new_path')
   
